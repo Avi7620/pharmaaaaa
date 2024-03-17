@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing and Resetting Effect</title>
+    <style>
+        /* Your existing CSS styles */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .marquee {
+            display: inline-block;
+        }
+        
+        .marquee .marquee-text {
+            font-size: 20px; /* Adjust font size */
+            color: #333; /* Text color */
+            font-weight: bold; /* Bold font weight */
+            margin: 0; /* Remove default margin */
+        }
+    </style>
+</head>
+<body>
+    <div class="marquee-container">
+        <div class="marquee">
+            <h1 class="marquee-text" id="typedText"></h1>
+        </div>
+    </div>
+
+    <script>
+        // Text to be typed and reset
+        const textToTypeAndReset = "Pharma AI Tools is revolutionizing the pharmacy industry.";
+
+        // Variables for typing effect
+        let charIndex = 0;
+        let typingSpeed = 50; // Adjust typing speed (lower value = faster typing)
+
+        // Function to simulate typing effect
+        function typeAndReset() {
+            const typedTextElement = document.getElementById("typedText");
+            if (charIndex < textToTypeAndReset.length) {
+                typedTextElement.textContent += textToTypeAndReset.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeAndReset, typingSpeed);
+            } else {
+                // After typing completes, reset charIndex and typed text
+                charIndex = 0;
+                typedTextElement.textContent = "";
+                setTimeout(typeAndReset, 1000); // Delay before starting typing again
+            }
+        }
+
+        // Start typing and resetting
+        typeAndReset();
+    </script>
+</body>
+</html>
